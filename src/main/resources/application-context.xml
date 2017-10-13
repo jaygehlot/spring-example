@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--Centralises construction of objects in application-->
+
+    <bean id="digitalMediaLocator" class="com.spring.example.ioc.DigitalMediaLocator"/>
+
+    <bean id="digitalMediaRentalService" class="com.spring.example.ioc.RentalService">
+        <constructor-arg ref="digitalMediaLocator"/>
+    </bean>
+
+    <bean id="kioskLocator" class="com.spring.example.ioc.KioskLocator">
+        <constructor-arg value="key"/>
+    </bean>
+
+
+    <bean id="rentalService" class="com.spring.example.ioc.RentalService">
+        <constructor-arg ref="kioskLocator"/>
+    </bean>
+
+
+
+    <bean id="beanA" class="com.spring.example.BeanA" name="beanA">
+        <constructor-arg value="false" type="boolean"/>  <!--type specifies which of the constructors to call-->
+    </bean>
+
+
+    <bean id="bean1" class="com.spring.example.BeanB"/>
+    <bean id="bean2" class="com.spring.example.BeanB"/>
+
+    <bean id="beanC" class="com.spring.example.BeanC">   <!--use INDEX to specify the argument index -->
+        <constructor-arg value="Jay" index="1"/>   <!-- Jay is passed into the constructor of BeanC for the 2nd argument-->
+        <constructor-arg value="Gehlot" index="0"/>  <!-- Gehlot is passed into the constructor of BeanC for the 1st argument-->
+    </bean>
+
+    <bean id="beanE" class="com.spring.example.BeanE"/>
+
+    <bean id="beanD" class="com.spring.example.BeanD">
+        <constructor-arg name="beanE" type="com.spring.example.BeanE" ref="beanE">  <!-- always declare the TYPE of the constructor arg -->
+            <!--name is the name of the parameter of the object being injected into bean D -->
+            <!--also you can put the ref tag in the constructor arg, this references the BeanE declaration, just above -->
+
+            <!--<bean class="com.spring.example.BeanE"/>  this can also be done.....
+
+            an inner bean can be declared, application context config cannot currently re-use this bean -->
+        </constructor-arg>
+    </bean>
+
+    <bean id="setterInjection" class="com.spring.example.SetterInjection">
+        <!--because its setter injection, the property tag is being used instead of constructor-arg-->
+        <property name="age" value="36"/>
+        <property name="beanE">
+            <bean class="com.spring.example.BeanE"/>
+        </property>
+    </bean>
+
+
+    <bean id="beanF" class="com.spring.example.BeanF" c:value="Test"/>
+    <!--using C name (constructor)-->
+    <!--the value corresponds to the name of the constructor argument-->
+
+    <bean id="beanG" class="com.spring.example.BeanG" p:age="31" p:beanF-ref="beanF" />
+    <!--using P name (property)-->
+    <!--the beanF-ref means that its a reference to another bean and beanF is shorthand for the setter setBeanF-->
+
+
+
+
+
+</beans>
