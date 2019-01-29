@@ -4,8 +4,8 @@ public class BeanF {
 
     private final String value;
 
-    public BeanF(String value) {
-        this.value = value;
+    public BeanF(String value12) {
+        this.value = value12;
     }
 
 

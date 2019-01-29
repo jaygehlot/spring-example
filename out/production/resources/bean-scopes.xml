@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- Prototype scope (returns a new instance of the bean each time it is retrieved from the container), handy for object-->
+    <bean id="prototype" class="com.spring.example.beanscopes.Prototype" scope="prototype" />
+
+    <!-- Singleton scope (beans by default, are singleton)-->
+    <bean id="singleton" class="com.spring.example.beanscopes.Singleton" scope="singleton">
+        <property name="prototype" ref="prototype"/>
+    </bean>
+
+
+    <!-- Request scope (web only, scope is only valid from when the request comes in to the time the server sends the response)-->
+
+    <!-- Session scope (web only, tied to user session, time the user enters the website, to the time they leave it)-->
+</beans>

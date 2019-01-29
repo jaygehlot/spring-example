@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="com.spring.example.collections.Bean">
+        <property name="list">
+            <list>
+                <value>Mary</value>
+                <value>Sam</value>
+                <value>Bob</value>
+                <value>Jack</value>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+                <value>Mary</value>
+                <value>Sam</value>
+                <value>Bob</value>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="a" value="Apple"/>
+                <entry key="b" value="Ball"/>
+                <entry key="c" value="Cat"/>
+            </map>
+        </property>
+        <property name="properties">
+
+        </property>
+    </bean>
+</beans>
